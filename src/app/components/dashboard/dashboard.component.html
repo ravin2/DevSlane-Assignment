@@ -1,0 +1,63 @@
+
+<div class="container">
+    <div class="search-results">
+        <div class="filter">
+            <angular2-multiselect [data]="itemList" 
+                [(ngModel)]="selectedItems" 
+                [settings]="settings" 
+                (onSelect)="onItemSelect($event)"
+                (onDeSelect)="OnItemDeSelect($event)" 
+                (onSelectAll)="onSelectAll($event)" 
+                (onDeSelectAll)="onDeSelectAll($event)">
+            </angular2-multiselect>
+        </div>
+        <div class="filter">
+            <angular2-multiselect [data]="genderList" 
+                [(ngModel)]="selectedGender" 
+                [settings]="gendersettings" 
+                (onSelect)="onGenderSelect($event)"
+                (onDeSelect)="OnGenderDeSelect($event)" 
+                (onSelectAll)="onGenderSelectAll($event)" 
+                >
+            </angular2-multiselect>
+        </div>
+        <div  
+            class="search-results"
+            infiniteScroll
+            [infiniteScrollDistance]="1"
+            [infiniteScrollThrottle]="20"
+            (scrolled)="onScroll()"
+        >
+            <div class="row pt-5">
+                <div class="col-md-4 p-2" *ngFor="let post of allpost?.results">
+                <!-- single post card -->
+                <div class="card shadow">
+                    <div class="card-body row">
+                        <div class="col-4">
+                            <img src={{post.picture.medium}} alt="" class="round-img">
+                        </div>
+                        <div class="col-8">
+                            <span class="card-title text-center ">{{post.name.first}} - {{post.name.last}}</span>
+                            <div class="card-title">
+                                {{post.dob.age}} yrs
+                                {{post.gender}}
+                            </div>
+                        </div>     
+                    </div>
+                    <div class="details">
+                        <div>
+                            DOB: {{post.dob.date}}
+                        </div>
+                        <div>
+                            Phone: {{post.phone}}
+                        </div>
+                        <div>
+                            Email: {{post.email}}
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
